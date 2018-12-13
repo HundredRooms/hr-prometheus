@@ -1,0 +1,9 @@
+prometheus_client
+
+# Testing
+black
+codecov
+isort
+pytest
+pytest-cov
+aiohttp
