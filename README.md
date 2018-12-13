@@ -1,8 +1,7 @@
 # hr-prometheus
 
-<a href="https://travis-ci.org/encode/sentry-asgi">
-    <img src="https://travis-ci.org/encode/sentry-asgi.svg?branch=master" alt="Build Status">
-</a>
+[![Build Status](https://travis-ci.com/HundredRooms/hr-prometheus.svg?branch=master)](https://travis-ci.com/HundredRooms/hr-prometheus)
+[![codecov](https://codecov.io/gh/HundredRooms/hr-prometheus/branch/master/graph/badge.svg)](https://codecov.io/gh/HundredRooms/hr-prometheus)
 
 Prometheus integration for aiohttp projects.
 
