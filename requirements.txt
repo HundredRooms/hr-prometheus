@@ -6,4 +6,6 @@ codecov
 isort
 pytest
 pytest-cov
+pytest-aiohttp
+pytest-mock
 aiohttp
