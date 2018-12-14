@@ -45,7 +45,7 @@ setup(
     author="Mateu Cànaves",
     author_email="mcanaves@hundredrooms.com",
     packages=get_packages("hr_prometheus"),
-    install_requires=["prometheus_client"],
+    install_requires=["aiohttp >= 3.4.0", "prometheus_client >= 0.5.0"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
