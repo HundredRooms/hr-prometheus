@@ -1,7 +1,9 @@
 import time
 
+from hr_prometheus.metrics import REQUEST_COUNT, REQUEST_IN_PROGRESS, REQUEST_LATENCY
 
-class RequestMonitor:
+
+class BaseRequestMonitor:
     """
     Base context manager from which to inherit for request monitoring
     """
@@ -25,6 +27,7 @@ class RequestMonitor:
         else:
             self.response_status = 500
         if self.end_metrics:
+            self.update_end_metrics()
 
     def observe(self, response):
         self.response_status = response.status
@@ -41,3 +44,19 @@ class RequestMonitor:
 
     def update_end_metrics(self):
         raise NotImplementedError()
+
+
+class RequestMonitor(BaseRequestMonitor):
+    """
+    Default context manager with request count, latency and in progress
+    metrics.
+    """
+
+    def update_init_metrics(self):
+        REQUEST_IN_PROGRESS.labels(*self.request_description).inc()
+
+    def update_end_metrics(self):
+        resp_time = time.time() - self.init_time
+        REQUEST_COUNT.labels(*self.request_description, self.response_status).inc()
+        REQUEST_LATENCY.labels(*self.request_description).observe(resp_time)
+        REQUEST_IN_PROGRESS.labels(*self.request_description).dec()
