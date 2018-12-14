@@ -8,7 +8,7 @@ class RequestMonitor:
 
     def __init__(self, request):
         self.request_description = (request.method, request.path)
-        self.initial_time = None
+        self.init_time = None
         self.response_status = None
 
     def __enter__(self):
