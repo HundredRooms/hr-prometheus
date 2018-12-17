@@ -44,7 +44,7 @@ This project provides some utilities to simplify the management of metrics. For 
 
 This `TimeMonitor` context decorator class accepts the `metric` to be observed and a list of `labels`.
 
-#### Decorator example
+#### Decorator example
 
 ```python
 from hr-prometheus.utils import TimeMonitor
@@ -57,7 +57,7 @@ def foo():
     print foo
 ```
 
-#### Context manager example
+#### Context manager example
 
 ```python
 from hr-prometheus.utils import TimeMonitor
