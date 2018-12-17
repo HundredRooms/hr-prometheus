@@ -17,7 +17,7 @@ Currently, it exports the following metrics via the /metrics endpoint by default
 - requests_in_progress: In progress requests.
   - Labels exported: method (HTTP method), path
 
-Default request behaviour can be modified by passing a custom `RequestMonitor` to the middleware. You can find out how to do in advanced section.
+Default request behaviour can be modified by passing a custom `RequestMonitor` to the middleware. You can find out how to do in [advanced section](#advance-usage).
 
 ## Installation
 
