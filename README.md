@@ -38,43 +38,6 @@ app.router.add_get("/metrics", hrprometheus_view)
 app.middlewares.append(hrprometheus_middleware())
 ```
 
-### Utils
-
-This project provides some utilities to simplify the management of metrics. For now only one is provides, a context manager and decorator to measure the execution time of some function or piece of code.
-
-This `TimeMonitor` context decorator class accepts the `metric` to be observed and a list of `labels`.
-
-#### Decorator example
-
-```python
-from hr-prometheus.utils import TimeMonitor
-
-FOO_METHOD = Counter("foo_method", "Number of foo method calls", ["source"])
-
-
-@TimeMonitor(metric=FOO_METHOD, labels=["label1", "label2"])
-def foo():
-    print foo
-```
-
-#### Context manager example
-
-```python
-from hr-prometheus.utils import TimeMonitor
-
-FOO_CODE = Counter("foo_code", "Number of foo prints", ["source"])
-
-
-class EnumLabels(Enum):
-    LABEL1 = "label1"
-    LABEL2 = "label2"
-
-
-def foo():
-    with TimeMonitor(metric=FOO_CODE, labels=[EnumLabels.LABEL1]):
-        print foo
-```
-
 ### Advance Usage
 
 To modify the default behavior you simply need to create a new monitor that inherits from the `BaseRequestMonitor` and pass the class to the middleware.
