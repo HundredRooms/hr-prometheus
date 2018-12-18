@@ -17,7 +17,7 @@ Currently, it exports the following metrics via the /metrics endpoint by default
 - requests_in_progress: In progress requests.
   - Labels exported: method (HTTP method), path
 
-Default request behaviour can be modified by passing a custom `RequestMonitor` to the middleware. You can find out how to do in [advanced section](#advance-usage).
+Default request behaviour can be modified by passing a custom `RequestMonitor` to the middleware. You can find out how to do it in [advanced section](#advance-usage).
 
 ## Installation
 
@@ -42,7 +42,7 @@ app.middlewares.append(hrprometheus_middleware())
 
 To modify the default behavior you simply need to create a new monitor that inherits from the `BaseRequestMonitor` and pass the class to the middleware.
 
-This clase provides two publica methods. `update_init_metrics` and `update_end_metrics`.
+This class provides two public methods. `update_init_metrics` and `update_end_metrics`.
 These methods are executed at the beginning and end of a request respectively. Simply add the metrics you want at each point.
 
 Here's an example taken from the default monitor.
