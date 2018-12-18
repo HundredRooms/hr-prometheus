@@ -31,7 +31,7 @@ Briefly, the following is all you need to do to measure and export prometheus me
 
 ```python
 from aiohttp import web
-from hr-prometheus import hrprometheus_middleware, hrprometheus_view
+from hr_prometheus import hrprometheus_middleware, hrprometheus_view
 
 app = web.Application()
 app.router.add_get("/metrics", hrprometheus_view)
@@ -49,8 +49,8 @@ Here's an example taken from the default monitor.
 
 ```python
 from aiohttp import web
-from hr-prometheus import hrprometheus_middleware, hrprometheus_view
-from hr-prometheus.monitors import BaseRequestMonitor
+from hr_prometheus import hrprometheus_middleware, hrprometheus_view
+from hr_prometheus.monitors import BaseRequestMonitor
 
 
 class RequestMonitor(BaseRequestMonitor):
