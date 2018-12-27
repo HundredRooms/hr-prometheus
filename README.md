@@ -38,7 +38,9 @@ app.router.add_get("/metrics", hrprometheus_view)
 app.middlewares.append(hrprometheus_middleware())
 ```
 
-### Advance Usage
+### Advanced usage
+
+#### Custom monitors
 
 To modify the default behavior you simply need to create a new monitor that inherits from the `BaseRequestMonitor` and pass the class to the middleware.
 
@@ -78,3 +80,20 @@ app = web.Application()
 app.router.add_get("/metrics", hrprometheus_view)
 app.middlewares.append(hrprometheus_middleware(RequestMonitor))
 ```
+
+#### Grouping dynamic routes
+In aiohttp you may define dynamic routes by parametrizing the route path (e.g. `/v1/resource/{resource_id}`). If you are interested in grouping the different values for a given parameter under the same metrics you can do so by specifying the fixed parameters for a named route to the request monitor (you can do so trhough the middleware for convinience).
+
+Here is an example of an api returning neighbouring cells from a matrix
+```python
+from aiohttp import web
+from hr_prometheus import hrprometheus_middleware
+from my_project.views import get_cell_neighbour_view
+
+middleware = hrprometheus_middleware(fixed_routes_parameter={"get_cell_neighbour": ["cell_id"]})
+app = web.Application(middlewares=[middleware])
+app.add_route("GET", "/cell_neighbour/{cell_id}/direction/{direction}", get_cell_neighbour_view, name="get_cell_neighbour")
+```
+This way requests with path `/cell_neighbour/1948/direction/north` and `/cell_neighbour/874/direction/north` are both collapsed into `"/cell_neighbour/{cell_id}/direction/north"`
+
+This is especially useful when you have a wide range of possible values for a path parameter and you are only interested in the overall monitoring, thus avoiding metrics namespace pollution.
