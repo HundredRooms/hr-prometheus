@@ -1,5 +1,6 @@
 import pytest
 from aiohttp import web
+
 from hr_prometheus.middleware import hrprometheus_middleware
 from hr_prometheus.view import hrprometheus_view
 

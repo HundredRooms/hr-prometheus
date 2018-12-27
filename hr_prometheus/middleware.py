@@ -1,4 +1,5 @@
 from aiohttp.web import middleware
+
 from hr_prometheus.monitors import RequestMonitor
 
 
