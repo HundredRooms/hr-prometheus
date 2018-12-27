@@ -1,5 +1,5 @@
-from collections.abc import Mapping
 import time
+from collections.abc import Mapping
 
 from prometheus_client import Counter, Gauge, Histogram
 

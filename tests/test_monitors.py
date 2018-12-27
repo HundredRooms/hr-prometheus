@@ -1,11 +1,9 @@
 import pytest
-
 from hr_prometheus.monitors import (
+    RequestMonitor,
     _path_with_fixed_parameters,
     _resolve_path,
-    RequestMonitor,
 )
-
 
 PATH = "hr_prometheus.monitors"
 
