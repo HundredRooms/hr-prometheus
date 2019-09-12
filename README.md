@@ -90,7 +90,7 @@ from aiohttp import web
 from hr_prometheus import hrprometheus_middleware
 from my_project.views import get_cell_neighbour_view
 
-middleware = hrprometheus_middleware(fixed_routes_parameter={"get_cell_neighbour": ["cell_id"]})
+middleware = hrprometheus_middleware(fixed_routes_parameters={"get_cell_neighbour": ["cell_id"]})
 app = web.Application(middlewares=[middleware])
 app.add_route("GET", "/cell_neighbour/{cell_id}/direction/{direction}", get_cell_neighbour_view, name="get_cell_neighbour")
 ```
