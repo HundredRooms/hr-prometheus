@@ -1,4 +1,5 @@
 import time
+from aiohttp.web_exceptions import HTTPNotFound
 from collections.abc import Mapping
 
 from prometheus_client import Counter, Gauge, Histogram
@@ -30,6 +31,8 @@ class BaseRequestMonitor:
     def __exit__(self, exc_type, *args):
         if exc_type is None:
             self._check_response_is_observed()
+        elif exc_type is HTTPNotFound:
+            self.response_status = 404
         else:
             self.response_status = 500
         if self.end_metrics:
